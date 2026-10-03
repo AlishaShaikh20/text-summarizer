@@ -1,8 +1,8 @@
 # Text Summarizer — T5 + FastAPI
 
-A text summarization project using a fine-tuned **T5-small** transformer model trained on the **SAMSum dataset**. The trained model is served through a FastAPI web application with a simple browser-based interface.
+A text summarization project using a fine-tuned **T5-small** transformer model, served through a FastAPI web application with a simple browser-based interface.
 
-The project primarily focuses on summarizing conversational text, which matches the type of data used during fine-tuning.
+The project primarily focuses on summarizing conversational text.
 
 ## Live Demo
 
@@ -10,38 +10,27 @@ The project primarily focuses on summarizing conversational text, which matches 
 
 ## Overview
 
-This project explores how a pretrained **T5 (Text-to-Text Transfer Transformer)** model can be fine-tuned for text summarization.
+This project explores fine-tuning a pretrained **T5 (Text-to-Text Transfer Transformer)** model for text summarization.
 
-The model was fine-tuned on a subset of the SAMSum dataset and connected to a FastAPI backend for inference. A simple HTML/CSS/JavaScript frontend allows users to enter text and receive a generated summary.
+The fine-tuned model is connected to a FastAPI backend for inference, with a simple HTML/CSS/JavaScript frontend where users can enter text and receive a generated summary.
 
 The application is deployed using **Modal**.
-
-## Dataset
-
-**SAMSum** is a dataset containing messenger-style conversations paired with human-written summaries.
-
-For this project:
-
-- Training samples: **4,000**
-- Validation samples: **500**
-- Dataset: [SAMSum on Hugging Face](https://huggingface.co/datasets/samsum)
-
-The dataset files are not included in this repository.
 
 ## Model
 
 - **Base model:** `t5-small`
-- **Fine-tuning task:** Text summarization
-- **Training epochs:** 3
+- **Fine-tuning:** SAMSum dataset
+- **Training samples:** 4,000
+- **Validation samples:** 500
+- **Epochs:** 3
 - **Batch size:** 3
 - **Weight decay:** 0.01
 - **Warmup steps:** 400
 - **Final training loss:** ~0.762
 - **Training hardware:** NVIDIA Tesla T4 GPU
 
-The fine-tuned model is available on Hugging Face:
-
-**[AlishaShaikh20/text-summarizer-t5](https://huggingface.co/AlishaShaikh20/text-summarizer-t5)**
+**Fine-tuned Model:**  
+[AlishaShaikh20/text-summarizer-t5](https://huggingface.co/AlishaShaikh20/text-summarizer-t5)
 
 ## Workflow
 
@@ -63,18 +52,6 @@ HTML / CSS / JavaScript Frontend
 Generated Summary
 ```
 
-### Main Steps
-
-1. Load the SAMSum training and validation data.
-2. Clean and prepare the text.
-3. Tokenize inputs and target summaries using the T5 tokenizer.
-4. Fine-tune `t5-small` using Hugging Face's `Trainer`.
-5. Save the trained model and tokenizer.
-6. Load the model for inference.
-7. Generate summaries using beam search.
-8. Serve the model through FastAPI.
-9. Deploy the application using Modal.
-
 ## Example
 
 **Input:**
@@ -94,16 +71,15 @@ Generated Summary
 
 ## Tech Stack
 
-- **Python**
-- **PyTorch**
-- **Hugging Face Transformers**
-- **Hugging Face Datasets**
-- **T5-small**
-- **FastAPI**
-- **Jinja2**
-- **HTML / CSS / JavaScript**
-- **Pandas**
-- **Modal**
+- Python
+- PyTorch
+- Hugging Face Transformers
+- T5-small
+- FastAPI
+- Jinja2
+- HTML / CSS / JavaScript
+- Pandas
+- Modal
 
 ## Project Structure
 
@@ -119,7 +95,7 @@ text_summariser/
 └── README.md
 ```
 
-The fine-tuned model weights and dataset CSV files are not stored in this repository.
+The fine-tuned model weights and dataset files are not included in the repository.
 
 ## Run Locally
 
@@ -162,8 +138,6 @@ http://127.0.0.1:8000
 
 ## What I Learned
 
-Through this project, I worked with:
-
 - Fine-tuning a pretrained Transformer model
 - T5 encoder-decoder architecture
 - Hugging Face tokenization
@@ -172,20 +146,10 @@ Through this project, I worked with:
 - Beam search decoding
 - Building an inference API with FastAPI
 - Connecting an ML model to a frontend
-- Deploying a machine-learning application using Modal
+- Deploying an ML application using Modal
 
 ## Limitations
 
-This is a small fine-tuning project trained on a limited subset of the SAMSum dataset. Because of that, summary quality can vary depending on the input.
+This project was trained on a limited subset of the SAMSum dataset, so summary quality can vary depending on the input.
 
-The model is primarily suited to conversational text similar to the data it was trained on and should not be considered a general-purpose document summarization system.
-
-## Future Improvements
-
-- Train on a larger portion of the SAMSum dataset
-- Evaluate generated summaries using ROUGE scores
-- Improve preprocessing and generation parameters
-- Support longer inputs through text chunking
-- Experiment with larger T5 variants
-- Improve the frontend and user experience
-- Add more systematic evaluation and testing
+The model is primarily suited to conversational text similar to the data used during fine-tuning and should not be considered a general-purpose document summarization
