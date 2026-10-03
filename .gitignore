@@ -1,0 +1,9 @@
+venv/
+.vscode/
+__pycache__/
+*.pyc
+.env
+
+samsum-test.csv
+samsum-train.csv
+samsum-validation.csv
